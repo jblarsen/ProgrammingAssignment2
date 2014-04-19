@@ -1,8 +1,13 @@
-## Put comments here that give an overall description of what your
-## functions do
+## This file contains two functions. The first returns a list containing
+## closures which store a normal matrix object and cache the inverse the 
+## matrix when first calculated. The other function does the inversion 
+## and stores the result in the object returned by the first method.
 
-## Write a short comment describing this function
-
+## The "makeCacheMatrix" function returns a list which is a wrapper 
+## around a normal matrix object. It holds the matrix object itself, 
+## the inverse of the matrix (if calculated) and methods for setting 
+## and getting the matrix object. Furthermore it exposes methods for 
+## getting and setting a variable containing the inverse of the matrix.
 makeCacheMatrix <- function(x = matrix()) {
         inv <- NULL
         set <- function(y) {
@@ -17,8 +22,10 @@ makeCacheMatrix <- function(x = matrix()) {
              getinverse = getinverse)
 }
 
-## Write a short comment describing this function
-
+## The "cacheSolve" function uses the list that the "makeCacheMatrix" 
+## function returns (let us call that a CacheMatrix) to get a cached 
+## version of the inverse  if available and otherwise calculate it and 
+## store it in the CacheMatrix.
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
         inv <- x$getinverse()
